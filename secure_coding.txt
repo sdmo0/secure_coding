@@ -1,0 +1,29 @@
+* code1.cc
+- swap 함수
+  . tem의 사이즈는 256이 되어야 함
+  . 255 사이즈 넘는 문자열에 대해서는 255 까지만 copy하는 루틴 필요
+  . strcpy 대신에 strncpy를 사용
+- main 함수
+  . swap(str1, str2) 에서 str1과 str2는 선언 없이 사용하는 변수
+
+
+* code2.cc
+- line 11, 13: fopen 전에 argc를 이용하여 parameter 수 확인 필요
+- line 18, 20: argv[1]과 argv[2]의 문자열 크기 확인 필요
+  (dest_file의 사이즈가 충분히 커야 함)
+- line 18, 20: sprintf 대신에 snprintf 사용
+- line 34: open_file_command의 사이즈가 dest_file을 담기에 충분히 커야함
+- line 34: sprintf 대신에 snprintf 사용
+- line 35: system() 대신에 execve 사용
+
+
+* code3.cc
+- line 10: clientSocket이 valid 한지 검사 필요
+- line 10: string을 읽는 것이라면 최대 buffer size보다 1만큼 적은 값 reading
+  (BUFF_SIZE - 1)
+- line 20: fileName의 사이즈보다 큰 문자열이 읽혀질 수 있음. 사이즈 제한 필요.
+- line 35: buffer overflow 발생 가능. buffer의 사이즈가 넘지 않도록 check 필요
+- line 35, 43: buffer에 null terminator를 더하지 않은 상태에서 strlen을 실행하면, 
+  buffer의 영역을 넘어서는 memory access 발생
+- line 52: null terminator까지 전송하기 위해서는 write 사이즈에 strlen(response)+1 필요
+- line 54, 60: return 전에 fclose(fp) 필요
